@@ -1,17 +1,15 @@
-require "open-uri"
-
+require 'open-uri'
 
 class GamesController < ApplicationController
- 
   def new
   @letters = ('B'..'Z').to_a.sample(7)
-  vowels = ['A','E','I','O','U'].sample(3)
+  vowels = %w[A E I O U].sample(3)
   @letters += vowels
   end
 
   def score
     @letters = params[:letters].split
-    @word = (params[:word] || "").upcase
+    @word = (params[:word] || '').upcase
     @included = included?(@word, @letters)
     @english_word = english_word?(@word)
   end
